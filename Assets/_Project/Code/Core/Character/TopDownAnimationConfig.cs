@@ -6,56 +6,49 @@ namespace _Project.Code.Core.Character
     [CreateAssetMenu(fileName = "AnimationConfig", menuName = "Configs/AnimationConfig")]
     public class TopDownAnimationConfig : ScriptableObject
     {
-        public List<AnimationEntry> Animations = new List<AnimationEntry>()
+        public List<DirectedAnimation> Animations = new List<DirectedAnimation>()
         {
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.down
             },
-            
-            new AnimationEntry()
+
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.left
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.up
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.right
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.down + Vector2.left
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.up + Vector2.left
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.up + Vector2.right
             },
-            new AnimationEntry()
+            new DirectedAnimation()
             {
-                Animation = null,
+                Clip = null,
                 Direction = Vector2.down + Vector2.right
             }
         };
-
-        [System.Serializable]
-        public class AnimationEntry
-        {
-            public AnimationClip Animation;
-            public Vector2 Direction;
-        }
     }
 }

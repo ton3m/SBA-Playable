@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 
 namespace _Project.Code.Camera
@@ -7,9 +6,6 @@ namespace _Project.Code.Camera
 	{
 		[SerializeField]
 		private Collider2D _borders;
-
-		[SerializeField]
-		private CinemachineVirtualCamera _virtualCamera;
 
 		[SerializeField]
 		private float _defaultCameraSize = 8f;
@@ -28,16 +24,16 @@ namespace _Project.Code.Camera
 			float factor = CalculateFactor(screenSize, boundsSize);
 			if (factor > 1f)
 			{
-				_virtualCamera.m_Lens.OrthographicSize /= factor;
+				_camera.orthographicSize /= factor;
 			}
-			float size = _virtualCamera.m_Lens.OrthographicSize;
+			float size = _camera.orthographicSize;
 			if (size < _defaultCameraSize)
 			{
 				float nextSize = size + 0.5f;
 				float multiplier = nextSize / size;
 				if (!(CalculateFactor(screenSize * multiplier, boundsSize) > 1f))
 				{
-					_virtualCamera.m_Lens.OrthographicSize = nextSize;
+					_camera.orthographicSize = nextSize;
 				}
 			}
 		}

@@ -6,7 +6,6 @@ namespace _Project.Code.Camera
     public class CameraInBordersZoom : MonoBehaviour
     {
         [SerializeField] private Collider2D _borders;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private float _defaultCameraSize = 8;
         
         private UnityEngine.Camera _camera;
@@ -25,11 +24,11 @@ namespace _Project.Code.Camera
            
            if (factor > 1)
             {
-                _virtualCamera.m_Lens.OrthographicSize /= factor;
+                _camera.orthographicSize /= factor;
                 //_virtualCamera.m_Lens.OrthographicSize -= 0.1f;
             }
             
-            var size = _virtualCamera.m_Lens.OrthographicSize;
+            var size = _camera.orthographicSize;
             
             if (size < _defaultCameraSize)
             {
@@ -38,7 +37,7 @@ namespace _Project.Code.Camera
                 
                 if (CalculateFactor(screenSize * multiplier, boundsSize) > 1) return;
                 
-                _virtualCamera.m_Lens.OrthographicSize = nextSize;
+                _camera.orthographicSize = nextSize;
             }
         }
 

@@ -20,15 +20,6 @@ namespace _Project.Code.Core.Character
             _input = input;
         }
 
-        private void Start()
-        {
-            if (_input == null)
-            {
-                Debug.LogWarning("Input is null, creating new keyboard");
-                _input = new KeyboardMoveInput();
-            }
-        }
-
         private void FixedUpdate()
         {
             var targetPosition = _rigidbody.position + Direction * (_speed * SpeedScaleFactor * Time.fixedDeltaTime);

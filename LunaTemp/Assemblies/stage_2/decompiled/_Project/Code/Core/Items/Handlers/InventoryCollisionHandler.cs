@@ -8,13 +8,13 @@ namespace _Project.Code.Core.Items.Handlers
 {
 	public class InventoryCollisionHandler : IDisposable
 	{
-		private readonly CollisionDetector _detector;
+		private readonly ICollisionDetector _detector;
 
 		private readonly InventoryProvider _provider;
 
 		private readonly InventoryTransferer _inventoryTransferer;
 
-		public InventoryCollisionHandler(CollisionDetector detector, InventoryProvider provider, InventoryTransferer inventoryTransferer)
+		public InventoryCollisionHandler(ICollisionDetector detector, InventoryProvider provider, InventoryTransferer inventoryTransferer)
 		{
 			_provider = provider;
 			_detector = detector;

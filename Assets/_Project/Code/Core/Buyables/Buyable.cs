@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Code.Core.Items;
 using _Project.Code.Core.Items.Inventory;
 using _Project.Code.Tutorial;
@@ -5,20 +6,15 @@ using UnityEngine;
 
 namespace _Project.Code.Core.Buyables
 {
-    public class MoneyConfig
-    {
-        public static int CoinItemPrice => 10;
-    }
-
     public class Buyable : MonoBehaviour, IBuyable
     {
         [SerializeField] private ItemInventory _itemInventory;
         [SerializeField] private int _price = 10;
 
         [SerializeField] private GameObject _activateOnBought;
-        [SerializeField] private GameObject _deactivateOnBought;
+        [SerializeField] private List<GameObject> _deactivateOnBought;
 
-        public bool IsBought => Input.GetKeyDown(KeyCode.Space);
+        public bool IsBought => gameObject.activeSelf == false;
 
         private void Awake()
         {
@@ -42,12 +38,12 @@ namespace _Project.Code.Core.Buyables
             _itemInventory.Added -= OnAdded;
         }
 
-        private int GetCapacity() => _price / MoneyConfig.CoinItemPrice;
+        private int GetCapacity() => _price;
 
         public void Buy()
         {
             _activateOnBought?.SetActive(true);
-            _deactivateOnBought?.SetActive(false);
+            _deactivateOnBought.ForEach(g => g.SetActive(false));
         }
     }
 }

@@ -79,15 +79,17 @@ namespace _Project.Code.Core.Items.Transfering
 		{
 			while (HasConnection)
 			{
-				yield return null;
-				if (CanTransfer(from, to))
+				if (!CanTransfer(from, to))
 				{
-					Item collectable = from.Get();
-					collectable.transform.parent = null;
-					yield return collectable.transform.DOMove(to.transform.position, 0.1f).Play().WaitForCompletion();
-					to.Add(collectable);
-					Debug.Log("Transfered unit");
+					Disconnect();
+					break;
 				}
+				Item collectable = from.Get();
+				collectable.transform.parent = null;
+				yield return collectable.transform.DOMove(to.transform.position, 0.1f).Play().WaitForCompletion();
+				to.Add(collectable);
+				Debug.Log("Transfered unit");
+				yield return null;
 			}
 		}
 

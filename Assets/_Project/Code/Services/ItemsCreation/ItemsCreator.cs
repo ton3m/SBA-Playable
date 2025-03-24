@@ -6,9 +6,14 @@ using UnityEngine;
 
 namespace _Project.Code.Services.ItemsCreation
 {
-    public class ItemsCreator : MonoBehaviour
+    public class ItemsCreator
     {
-        [SerializeField] List<Item> _prefabs;
+        private List<Item> _prefabs;
+
+        public ItemsCreator(List<Item> prefabs)
+        {
+            _prefabs = prefabs;
+        }
 
         public Item Create(ItemType type)
         {
@@ -17,7 +22,7 @@ namespace _Project.Code.Services.ItemsCreation
             if (prefab is null)
                 throw new NullReferenceException("No prefab for type " + type);
             
-            return Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            return UnityEngine.Object.Instantiate(prefab, Vector3.zero, Quaternion.identity);
         }
     }
 }

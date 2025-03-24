@@ -9,6 +9,9 @@ namespace _Project.Code.Core.Items.Inventory
 		[SerializeField]
 		private List<Transform> _columnPoints;
 
+		[SerializeField]
+		private bool _destroyOnEmptied;
+
 		private int _rowIndex = -1;
 
 		private int _columnIndex = 0;
@@ -32,6 +35,10 @@ namespace _Project.Code.Core.Items.Inventory
 				_columnIndex--;
 			}
 			item.transform.parent = null;
+			if (_destroyOnEmptied && base.ItemsCount == 0)
+			{
+				UnityEngine.Object.Destroy(base.gameObject);
+			}
 		}
 
 		protected override void OnAdded(Item item)

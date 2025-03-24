@@ -6,10 +6,14 @@ using UnityEngine;
 
 namespace _Project.Code.Services.ItemsCreation
 {
-	public class ItemsCreator : MonoBehaviour
+	public class ItemsCreator
 	{
-		[SerializeField]
 		private List<Item> _prefabs;
+
+		public ItemsCreator(List<Item> prefabs)
+		{
+			_prefabs = prefabs;
+		}
 
 		public Item Create(ItemType type)
 		{

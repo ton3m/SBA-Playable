@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -18,20 +19,22 @@ namespace _Project.Code.Selling.Line
 
 		private Queue<Customer> _customers = new Queue<Customer>();
 
-		private void Awake()
+		private int _reservedCount;
+
+		private int _spawnRequests;
+
+		private void OnEnable()
 		{
 			Init();
 		}
 
-		public void Init()
+		private void Init()
 		{
-			for (int i = 0; i < _spawnPoints.Count; i++)
-			{
-				CreateNewCustomer(i);
-			}
+			RequestCreation(_spawnPoints.Count);
+			StartCoroutine(CreatingCustomers());
 		}
 
-		private void CreateNewCustomer(int i)
+		private Customer CreateNewCustomer(int i)
 		{
 			Transform point = _spawnPoints[i];
 			Customer customer = UnityEngine.Object.Instantiate(_customerPrefab, point, true);
@@ -41,6 +44,7 @@ namespace _Project.Code.Selling.Line
 			int orderSize = UnityEngine.Random.Range(1, 10);
 			customer.Init(sprite, orderSize, orderSize);
 			_customers.Enqueue(customer);
+			return customer;
 		}
 
 		public bool TryGetCustomer(out Customer customer)
@@ -57,10 +61,33 @@ namespace _Project.Code.Selling.Line
 				throw new InvalidOperationException("Customer is not the same as dequeued");
 			}
 			dequeued.enabled = false;
-			MoveCustomers(delegate
+			MoveCustomers(RequestCreation);
+		}
+
+		private void RequestCreation(int count)
+		{
+			_spawnRequests += count;
+		}
+
+		private void RequestCreation()
+		{
+			RequestCreation(1);
+		}
+
+		private IEnumerator CreatingCustomers()
+		{
+			while (base.gameObject.activeSelf)
 			{
-				CreateNewCustomer(_spawnPoints.Count - 1);
-			});
+				if (_spawnRequests < 1 && _customers.Count >= _spawnPoints.Count)
+				{
+					yield return null;
+					continue;
+				}
+				int pointIndex = _customers.Count;
+				CreateNewCustomer(pointIndex);
+				_spawnRequests--;
+				yield return new WaitForSeconds(2f);
+			}
 		}
 
 		private void MoveCustomers(Action onFinished = null)
@@ -68,7 +95,7 @@ namespace _Project.Code.Selling.Line
 			Customer[] customersArray = _customers.ToArray();
 			_customers.Clear();
 			Sequence sequence = DOTween.Sequence();
-			for (int i = 0; i < customersArray.Length; i++)
+			for (int i = 0; i < customersArray.Length + _reservedCount; i++)
 			{
 				Customer customer = customersArray[i];
 				if (i < _spawnPoints.Count)

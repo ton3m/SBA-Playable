@@ -6,6 +6,7 @@ using _Project.Code.Core.Items.Inventory;
 using _Project.Code.Core.Items.Transfering;
 using _Project.Code.Services.CoroutineRunner;
 using _Project.Code.Services.Input;
+using _Project.Code.Services.ServiceLocator;
 using UnityEngine;
 
 namespace _Project.Code.Core.Character
@@ -16,7 +17,7 @@ namespace _Project.Code.Core.Character
 		private Mover _mover;
 
 		[SerializeField]
-		private CollisionDetector _detector;
+		private OverlapCollisionDetector _castingDetector;
 
 		[SerializeField]
 		private CharacterAnimator _animator;
@@ -24,15 +25,17 @@ namespace _Project.Code.Core.Character
 		[SerializeField]
 		private List<ItemInventory> _storages;
 
-		public void Init(IMoveInput input, ICoroutineRunner coroutineRunner)
+		public void Start()
 		{
+			MoveInput input = L.Resolve<MoveInput>();
+			CoroutineRunner coroutineRunner = L.Resolve<CoroutineRunner>();
 			_mover.Init(input);
 			InventoryProvider provider = new InventoryProvider(_storages);
-			Harvester harvester = new Harvester(_detector);
+			Harvester harvester = new Harvester(_castingDetector);
 			ItemTransferer itemTransferer = new ItemTransferer();
 			InventoryTransferer inventoryTransferer = new InventoryTransferer(coroutineRunner);
-			ItemCollisionHandler itemHandler = new ItemCollisionHandler(_detector, provider, itemTransferer);
-			InventoryCollisionHandler inventoryHandler = new InventoryCollisionHandler(_detector, provider, inventoryTransferer);
+			ItemCollisionHandler itemHandler = new ItemCollisionHandler(_castingDetector, provider, itemTransferer);
+			InventoryCollisionHandler inventoryHandler = new InventoryCollisionHandler(_castingDetector, provider, inventoryTransferer);
 		}
 
 		private void Update()

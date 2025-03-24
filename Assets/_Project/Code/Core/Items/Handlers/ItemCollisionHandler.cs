@@ -12,7 +12,7 @@ namespace _Project.Code.Core.Items.Handlers
         private readonly InventoryProvider _provider;
         private readonly ItemTransferer _transferer;
 
-        public ItemCollisionHandler(CollisionDetector detector, InventoryProvider provider, ItemTransferer transferer)
+        public ItemCollisionHandler(ICollisionDetector detector, InventoryProvider provider, ItemTransferer transferer)
         {
             _transferer = transferer;
             _provider = provider;

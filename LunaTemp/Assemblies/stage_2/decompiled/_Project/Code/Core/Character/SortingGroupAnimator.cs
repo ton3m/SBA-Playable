@@ -11,6 +11,12 @@ namespace _Project.Code.Core.Character
 
 		private SortingGroup _sortingGroup;
 
+		private void OnValidate()
+		{
+			_sortingGroup = GetComponent<SortingGroup>();
+			_sortingGroup.sortingOrder = _order;
+		}
+
 		private void Awake()
 		{
 			_sortingGroup = GetComponent<SortingGroup>();

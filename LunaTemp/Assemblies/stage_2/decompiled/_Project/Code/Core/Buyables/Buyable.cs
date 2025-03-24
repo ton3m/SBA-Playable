@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Project.Code.Core.Items;
 using _Project.Code.Core.Items.Inventory;
 using _Project.Code.Tutorial;
@@ -17,9 +18,9 @@ namespace _Project.Code.Core.Buyables
 		private GameObject _activateOnBought;
 
 		[SerializeField]
-		private GameObject _deactivateOnBought;
+		private List<GameObject> _deactivateOnBought;
 
-		public bool IsBought => Input.GetKeyDown(KeyCode.Space);
+		public bool IsBought => !base.gameObject.activeSelf;
 
 		private void Awake()
 		{
@@ -48,13 +49,16 @@ namespace _Project.Code.Core.Buyables
 
 		private int GetCapacity()
 		{
-			return _price / MoneyConfig.CoinItemPrice;
+			return _price;
 		}
 
 		public void Buy()
 		{
 			_activateOnBought?.SetActive(true);
-			_deactivateOnBought?.SetActive(false);
+			_deactivateOnBought.ForEach(delegate(GameObject g)
+			{
+				g.SetActive(false);
+			});
 		}
 	}
 }

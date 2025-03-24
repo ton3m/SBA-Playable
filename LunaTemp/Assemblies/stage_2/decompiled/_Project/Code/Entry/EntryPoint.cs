@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
-using _Project.Code.Core.Character;
 using _Project.Code.Core.Harvesting;
+using _Project.Code.Core.Items;
 using _Project.Code.Services.CoroutineRunner;
 using _Project.Code.Services.Input;
 using _Project.Code.Services.ItemsCreation;
+using _Project.Code.Services.ServiceLocator;
+using Assets.CourseGame.Develop.DI;
 using UnityEngine;
 
 namespace _Project.Code.Entry
@@ -12,30 +15,33 @@ namespace _Project.Code.Entry
 	public class EntryPoint : MonoBehaviour
 	{
 		[SerializeField]
-		private ItemsCreator _itemsCreator;
-
-		[SerializeField]
 		private Joystick _joystick;
 
 		[SerializeField]
-		private CharacterInstaller _character;
-
-		[SerializeField]
-		private GameObject _fieldsHolder;
+		private List<Item> _itemPrefabs;
 
 		private CoroutineRunner _coroutineRunner;
 
 		private void Awake()
 		{
-			Dropper dropper = new Dropper(_itemsCreator.Create);
-			FieldsDropper fieldsDropper = CreateFieldsDropper(dropper);
-			_coroutineRunner = GetComponent<CoroutineRunner>();
-			_character.Init(new MoveInput(_joystick), _coroutineRunner);
+			L.Container = new DIContainer();
+			L.Reg((DIContainer _) => GetComponent<CoroutineRunner>());
+			L.Reg((DIContainer _) => new MoveInput(_joystick));
+			L.Reg((DIContainer _) => new ItemsCreator(_itemPrefabs));
+			L.Reg((DIContainer c) => new Dropper(c.Resolve<ItemsCreator>()));
+			L.Reg((DIContainer c) => new FieldsDropper(c.Resolve<Dropper>(), GetFields()));
+			L.Container.Initialize();
 		}
 
-		private FieldsDropper CreateFieldsDropper(Dropper dropper)
+		private void OnDestroy()
 		{
-			return new FieldsDropper(dropper, _fieldsHolder.GetComponentsInChildren<Field>(true).ToList());
+			L.Container.Dispose();
+			L.Container = null;
+		}
+
+		private List<Field> GetFields()
+		{
+			return Object.FindObjectsOfType<Field>().ToList();
 		}
 	}
 }

@@ -67,7 +67,7 @@ namespace _Project.Code.Core.PopcornFarm
 		private IEnumerator AnimateCircle(Action onFinished = null)
 		{
 			_isWorking = true;
-			float duration = 2f;
+			float duration = 0.5f;
 			while (_fillImage.fillAmount < 1f)
 			{
 				_fillImage.fillAmount += Time.deltaTime / duration;

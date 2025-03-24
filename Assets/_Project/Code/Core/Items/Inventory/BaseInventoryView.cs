@@ -6,6 +6,8 @@ namespace _Project.Code.Core.Items.Inventory
     {
         [SerializeField] private ItemInventory _inventory;
         
+        protected int ItemsCount => _inventory.Count;
+
         private void OnEnable()
         {
             if (_inventory == null) return;

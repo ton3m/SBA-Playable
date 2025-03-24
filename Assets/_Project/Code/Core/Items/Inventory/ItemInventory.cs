@@ -27,6 +27,8 @@ namespace _Project.Code.Core.Items.Inventory
 
         public void Add(Item collectable)
         {
+            Debug.Log($"Adding {collectable.Type} to {_type} storage");
+
             if (!CanAdd())
                 throw new OperationCanceledException($"Cant add to {_type} storage");
 

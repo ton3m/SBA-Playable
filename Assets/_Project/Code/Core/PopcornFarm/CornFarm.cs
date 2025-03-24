@@ -65,7 +65,7 @@ namespace _Project.Code.Core.PopcornFarm
         {
             _isWorking = true;
         
-            var duration = 2f;
+            var duration = 0.5f;
         
             while (_fillImage.fillAmount < 1)
             {

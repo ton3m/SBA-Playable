@@ -8,9 +8,9 @@ namespace _Project.Code.Services.ItemsCreation
 {
 	public class Dropper
 	{
-		private readonly Func<ItemType, Item> _creator;
+		private readonly ItemsCreator _creator;
 
-		public Dropper(Func<ItemType, Item> creator)
+		public Dropper(ItemsCreator creator)
 		{
 			_creator = creator;
 		}
@@ -20,7 +20,7 @@ namespace _Project.Code.Services.ItemsCreation
 			List<Item> items = new List<Item>(count);
 			for (int j = 0; j < count; j++)
 			{
-				Item item = _creator(type);
+				Item item = _creator.Create(type);
 				item.transform.position = position;
 				item.transform.rotation = Quaternion.Euler(0f, 0f, UnityEngine.Random.Range(0, 360));
 				item.enabled = false;

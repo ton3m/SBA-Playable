@@ -67,9 +67,11 @@ namespace _Project.Code.Core.Items.Transfering
         {
             while (HasConnection)
             {
-                yield return null;
-
-                if (CanTransfer(from, to) == false) continue;
+                if (CanTransfer(from, to) == false)
+                {
+                    Disconnect();
+                    yield break;
+                }
 
                 var collectable = from.Get();
                 collectable.transform.parent = null;
@@ -78,6 +80,8 @@ namespace _Project.Code.Core.Items.Transfering
 
                 to.Add(collectable);
                 Debug.Log("Transfered unit");
+                
+                yield return null;
             }
         }
 
