@@ -20,7 +20,7 @@ namespace _Project.Code.Core.Buyables
 
         private IEnumerator WaitEnd()
         {
-            yield return new WaitForSeconds(27f);
+            yield return new WaitForSeconds(30f);
             
             if (!_isFinished)
             {

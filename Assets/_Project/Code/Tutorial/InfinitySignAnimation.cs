@@ -20,7 +20,7 @@ namespace _Project.Code.Tutorial
                 float t = i * 2 * Mathf.PI / resolution;
                 float x = _width * Mathf.Cos(t) / (1 + Mathf.Sin(t) * Mathf.Sin(t));
                 float y = _width * Mathf.Cos(t) * Mathf.Sin(t) / (1 + Mathf.Sin(t) * Mathf.Sin(t));
-                path[i] = new Vector3(x, y, 0) + transform.position;
+                path[i] = new Vector3(x, y, 0) + transform.localPosition;
             }
 
             transform.position = path[0]; // Установить начальную позицию

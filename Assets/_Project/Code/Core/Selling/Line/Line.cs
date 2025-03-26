@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace _Project.Code.Selling.Line
     public class Line : MonoBehaviour, ILine
     {
         [SerializeField] private Customer _customerPrefab;
-        [SerializeField] private List<Sprite> _customerSprites = new List<Sprite>();
+        [SerializeField] private List<AnimatorController> _customerAnimatorControllers = new List<AnimatorController>();
         [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
         private Queue<Customer> _customers = new Queue<Customer>();
@@ -19,6 +20,8 @@ namespace _Project.Code.Selling.Line
         private int _spawnRequests;
 
         private void OnEnable() => Init();
+
+        private int _lastGeneratedIndex = -1;
 
         private void Init()
         {
@@ -34,12 +37,20 @@ namespace _Project.Code.Selling.Line
 
             customer.transform.localPosition = Vector3.zero;
 
-            var spriteIndex = Random.Range(0, _customerSprites.Count);
-            var sprite = _customerSprites[spriteIndex];
+            int index;
+
+            do
+            {
+                index = Random.Range(0, _customerAnimatorControllers.Count);
+            } while (index == _lastGeneratedIndex);
+            
+            _lastGeneratedIndex = index;
+
+            var animator = _customerAnimatorControllers[index];
 
             var orderSize = Random.Range(1, 10);
 
-            customer.Init(sprite, orderSize, orderSize);
+            customer.Init(animator, orderSize, orderSize);
 
             _customers.Enqueue(customer);
 
@@ -76,8 +87,8 @@ namespace _Project.Code.Selling.Line
                 {
                     yield return null;
                     continue;
-                } 
-                
+                }
+
                 var pointIndex = _customers.Count;
                 var customer = CreateNewCustomer(pointIndex);
 

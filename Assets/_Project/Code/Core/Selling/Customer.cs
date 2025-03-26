@@ -1,5 +1,6 @@
 ﻿using _Project.Code.Selling.Line;
 using DG.Tweening;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace _Project.Code.Selling
@@ -9,20 +10,20 @@ namespace _Project.Code.Selling
     {
         [SerializeField] private BubbleView _bubbleView;
         
-        private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
         
         public int OrderSize {get; private set;}
         public int Money {get; private set;}
 
         private void Awake() => 
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
 
-        public void Init(Sprite sprite, int orderSize, int money)
+        public void Init(AnimatorController animatorController, int orderSize, int money)
         {
             OrderSize = orderSize;
             Money = money;
             
-            _spriteRenderer.sprite = sprite;
+            _animator.runtimeAnimatorController = animatorController;
             _bubbleView.SetText(orderSize.ToString());
         }
         

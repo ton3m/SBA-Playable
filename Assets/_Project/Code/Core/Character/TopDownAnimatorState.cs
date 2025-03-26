@@ -5,17 +5,18 @@ namespace _Project.Code.Core.Character
 {
     public class TopDownAnimatorState : StateMachineBehaviour
     {
-        [SerializeField] private TopDownAnimationConfig _animationConfig;
-        [SerializeField] private string _parameterX = "X";
-        [SerializeField] private string _parameterY = "Y";
+        [SerializeField] int _layer = 0;
+        [SerializeField] TopDownAnimationConfig _animationConfig;
+        [SerializeField] string _parameterX = "X";
+        [SerializeField] string _parameterY = "Y";
 
-        private Animator _animator;
-        private DirectedAnimation _currentAnimation;
+        Animator _animator;
+        DirectedAnimation _currentAnimation;
 
-        private int _xHash;
-        private int _yHash;
+        int _xHash;
+        int _yHash;
 
-        private void Awake()
+        void Awake()
         {
             _xHash = Animator.StringToHash(_parameterX);
             _yHash = Animator.StringToHash(_parameterY);
@@ -28,27 +29,23 @@ namespace _Project.Code.Core.Character
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //_animator = null;
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             var animation = GetClosestAnimation(Direction);
 
-            if (_currentAnimation is not null && animation is not null &&
-                animation.Clip.name == _currentAnimation.Clip.name) return;
+            animator.transform.localScale = animation.Flip ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
 
-            animator.transform.localScale = new Vector3(-1, 1, 1);
-
-            animator.Play(animation.Clip.name);
+            animator.Play(animation.Clip.name, _layer);
 
             _currentAnimation = animation;
         }
 
-        private Vector2 Direction =>
+        Vector2 Direction =>
             new Vector2(_animator.GetFloat(_xHash), _animator.GetFloat(_yHash));
 
-        private DirectedAnimation GetClosestAnimation(Vector2 direction)
+        DirectedAnimation GetClosestAnimation(Vector2 direction)
         {
             DirectedAnimation closest = null;
 

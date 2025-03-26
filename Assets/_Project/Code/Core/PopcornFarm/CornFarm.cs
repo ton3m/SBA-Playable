@@ -3,6 +3,7 @@ using System.Collections;
 using _Project.Code.Core.Items;
 using _Project.Code.Core.Items.Inventory;
 using _Project.Code.Services.ItemsCreation;
+using _Project.Code.Services.ServiceLocator;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ namespace _Project.Code.Core.PopcornFarm
         private void Start()
         {
             _fillImage.fillAmount = 0;
+            _itemsCreator = L.Resolve<ItemsCreator>();
         }
 
         private void OnEnable()

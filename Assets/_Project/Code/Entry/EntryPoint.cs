@@ -29,7 +29,7 @@ namespace _Project.Code.Entry
 
             L.Reg(_ => new ItemsCreator(_itemPrefabs));
             L.Reg(c => new Dropper(c.Resolve<ItemsCreator>()));
-            L.Reg(c => new FieldsDropper(c.Resolve<Dropper>(), GetFields()));
+            L.Reg(c => new FieldsDropper(c.Resolve<Dropper>(), GetFields())).NonLazy();
 
             L.Container.Initialize();
         }
