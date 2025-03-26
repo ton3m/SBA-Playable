@@ -10,11 +10,11 @@ namespace Assets.CourseGame.Develop.DI
  
     public class DIContainer : IDisposable
     {
-        private readonly Dictionary<Type, Registration> _container = new();
+        private readonly Dictionary<Type, Registration> _container = new Dictionary<Type, Registration>();
 
         private readonly DIContainer _parent;
 
-        private readonly List<Type> _requests = new();
+        private readonly List<Type> _requests = new List<Type>();
 
         public DIContainer() : this(null)
         {
