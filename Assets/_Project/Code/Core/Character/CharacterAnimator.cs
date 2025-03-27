@@ -1,30 +1,27 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Project.Code.Core.Character
 {
     public class CharacterAnimator : MonoBehaviour
     {
-        private readonly int _x = Animator.StringToHash("X");
-        private readonly int _y = Animator.StringToHash("Y");
-        private readonly int _isMoving = Animator.StringToHash("IsMoving");
+        [SerializeField] TopDownAnimator _walkAnimator;
+        [SerializeField] TopDownAnimator _idleAnimator;
+        [SerializeField] TopDownAnimator _backpackAnimator;
 
-        [SerializeField] private List<Animator> _directionalAnimators;
-        [SerializeField] private Animator _movingAnimator;
+        public Vector2 Direction {get; set;}
 
-        [SerializeField] private float _breathSpeed = 3f;
-        [SerializeField] private float _breathScale = 0.2f;
-
-        public void SetDirection(Vector2 direction)
+        private void Update()
         {
-            var isMoving = direction.magnitude > 0.2f;
+            var isMoving = Direction.magnitude > 0.1f;
+            
+            _walkAnimator.enabled = isMoving;
+            _idleAnimator.enabled = !isMoving;
 
-            _movingAnimator.SetBool(_isMoving, isMoving);
+            //if (!isMoving) return;
 
-          //  if (!isMoving) return;
-                
-            _directionalAnimators.ForEach(a => a.SetFloat(_x, direction.x));
-            _directionalAnimators.ForEach(a => a.SetFloat(_y, direction.y));
+            _walkAnimator.Direction = Direction;
+            _idleAnimator.Direction = _walkAnimator.Direction;
+            _backpackAnimator.Direction = _idleAnimator.Direction;
         }
     }
 }

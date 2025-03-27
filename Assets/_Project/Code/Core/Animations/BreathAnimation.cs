@@ -5,7 +5,6 @@ namespace _Project.Code.Core.Animations
 {
     public class BreathAnimation : MonoBehaviour
     {
-        [SerializeField] private float _duration = 0.5f;
         [SerializeField] private float _scaleFactor = 1.2f;
 
         private Tweener _tweener;

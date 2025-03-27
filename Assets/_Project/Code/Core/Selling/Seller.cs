@@ -55,7 +55,7 @@ namespace _Project.Code.Selling
 
         private void GetPaid()
         {
-            int count = _currentCustomer.Money;
+            int count = _currentCustomer.Money + Random.Range(0, 6);
 
             var sequence = DOTween.Sequence();
 

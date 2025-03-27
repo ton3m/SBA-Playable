@@ -37,6 +37,6 @@ namespace _Project.Code.Core.Character
             var inventoryHandler = new InventoryCollisionHandler(_castingDetector, provider, inventoryTransferer);
         }
 
-        private void Update() => _animator.SetDirection(_mover.Direction);
+        private void Update() => _animator.Direction = _mover.Direction;
     }
 }

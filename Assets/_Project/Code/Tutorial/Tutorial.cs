@@ -8,6 +8,8 @@ namespace _Project.Code.Tutorial
 {
     public class Tutorial : MonoBehaviour
     {
+        [SerializeField] private Collider2D _tutorialCollider;
+        
         [SerializeField] private TMP_Text _tutorialText;
         [SerializeField] private ItemInventory _tutorialInventory;
         [SerializeField] private Joystick _joystick;
@@ -20,6 +22,8 @@ namespace _Project.Code.Tutorial
 
         private void Start()
         {
+            _tutorialText.gameObject.SetActive(true);
+            _tutorialCollider.enabled = true;
             _arrow.gameObject.SetActive(false);
             _tutorialInventory.gameObject.SetActive(false);
             StartCoroutine(TutorialCoroutine());
@@ -52,12 +56,15 @@ namespace _Project.Code.Tutorial
             {
                 if (_buyable.IsBought)
                 {
+                    Debug.Log("Buyed");
                     _arrow.gameObject.SetActive(false);
                     break;
                 }
 
                 yield return null;
             }
+            
+            _tutorialCollider.enabled = false;
         }
     }
 }

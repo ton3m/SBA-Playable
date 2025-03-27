@@ -46,7 +46,11 @@ namespace _Project.Code.Core.PopcornFarm
         {
             if (_count > 0 && !_isWorking)
             {
-                StartCoroutine(AnimateCircle(ProduceCorn));
+                StartCoroutine(AnimateCircle(() =>
+                {
+                    ProduceCorn();
+                    ProduceCorn();
+                }));
             }
         }
 

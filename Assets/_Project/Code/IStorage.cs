@@ -2,6 +2,6 @@
 {
     public interface IStorage
     {
-        public bool IsEmpty { get; }
+        bool IsEmpty { get; }
     }
 }

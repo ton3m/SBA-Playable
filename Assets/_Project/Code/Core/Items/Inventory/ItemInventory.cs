@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Code.Entry;
 using _Project.Code.Tutorial;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Project.Code.Core.Items.Inventory
@@ -31,6 +32,10 @@ namespace _Project.Code.Core.Items.Inventory
 
             if (!CanAdd())
                 throw new OperationCanceledException($"Cant add to {_type} storage");
+                
+            collectable.transform.localScale = Vector3.zero;
+
+            collectable.transform.DOScale(Vector3.one, 0.1f).Play();
 
             _collectables.Push(collectable);
 

@@ -22,6 +22,8 @@ namespace _Project.Code.Core.Character
 
         private void FixedUpdate()
         {
+            if (_input is null) _input = new KeyboardMoveInput();
+
             var targetPosition = _rigidbody.position + Direction * (_speed * SpeedScaleFactor * Time.fixedDeltaTime);
             
             _rigidbody.MovePosition(targetPosition);

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2627760032114025537}
   - component: {fileID: 7423542575969400145}
   - component: {fileID: 1466422151983591111}
-  - component: {fileID: 7639741450256247609}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 964f6c782a865494b9f81da9d9f9b251, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b677174329723741b465f0bbf225e90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,22 +106,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7639741450256247609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611358235248036021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f094bc76f344e478485c49cb58896c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _directionalAnimators: []
-  _movingAnimator: {fileID: 0}
-  _breathSpeed: 3
-  _breathScale: 0.2
 --- !u!1 &5277433981945934253
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7291785884646857822}
+  - component: {fileID: 6270852126928903222}
   m_Layer: 0
   m_Name: Holder
   m_TagString: Untagged
@@ -148,13 +132,34 @@ Transform:
   m_GameObject: {fileID: 5277433981945934253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 772220762514701768}
   m_Father: {fileID: 3391234677547961995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &6270852126928903222
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277433981945934253}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4acfd9490222bc459e0416630dd89cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7590072052005223282
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +236,7 @@ GameObject:
   - component: {fileID: 6788563333246218529}
   - component: {fileID: 5395838797441692631}
   - component: {fileID: 7574709268691956945}
+  - component: {fileID: 4431787598312806047}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -269,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mover: {fileID: 1140392472240609784}
   _castingDetector: {fileID: 931346738135806000}
-  _animator: {fileID: 7639741450256247609}
+  _animator: {fileID: 0}
   _storages:
   - {fileID: 5501540666576182491}
   - {fileID: 4273586421017587150}
@@ -302,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff793008b2fc344580b85b82683e914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 20
+  _speed: 26
   _rigidbody: {fileID: 6788563333246218529}
 --- !u!50 &6788563333246218529
 Rigidbody2D:
@@ -378,6 +384,22 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &4431787598312806047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9116978933562317497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f094bc76f344e478485c49cb58896c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _directionalAnimators: []
+  _movingAnimator: {fileID: 0}
+  _breathSpeed: 3
+  _breathScale: 0.2
 --- !u!1001 &2116452330815289635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,6 +408,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 772220762514701768}
     m_Modifications:
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2743239847700681965, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
       propertyPath: _type
       value: 2
@@ -541,6 +587,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 772220762514701768}
     m_Modifications:
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2743239847700681965, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
       propertyPath: _type
       value: 3
@@ -571,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166199564408560412, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.186
       objectReference: {fileID: 0}
     - target: {fileID: 8578914408299823286, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
       propertyPath: m_LocalScale.x
@@ -700,6 +762,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 772220762514701768}
     m_Modifications:
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 716488020240981335, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227934902504113370, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2743239847700681965, guid: 5b1277af6a46bf64d9d28e44738d9d60, type: 3}
       propertyPath: _capacity
       value: 50

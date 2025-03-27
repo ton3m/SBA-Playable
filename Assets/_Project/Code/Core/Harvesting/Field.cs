@@ -27,7 +27,7 @@ namespace _Project.Code.Core.Harvesting
             
             _growingTween = _plant
                 .DOScale(_defaultScale, 1) 
-                .SetDelay(25f)
+                .SetDelay(10f)
                 .SetEase(Ease.OutBack)
                 .OnStart(() => _plant.localScale = Vector3.zero)
                 .OnComplete(() => SetState(FieldState.Grown))
