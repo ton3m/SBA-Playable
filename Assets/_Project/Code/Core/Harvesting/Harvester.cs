@@ -9,6 +9,7 @@ namespace _Project.Code.Core.Harvesting
         private readonly ICollisionDetector _detector;
 
         private Field _harvestingField;
+        //private List<Field> _harvestingFields;
 
         public Harvester(ICollisionDetector detector)
         {

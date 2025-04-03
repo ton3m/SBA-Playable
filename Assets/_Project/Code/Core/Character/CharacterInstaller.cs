@@ -19,6 +19,8 @@ namespace _Project.Code.Core.Character
 
         [SerializeField] private List<ItemInventory> _storages;
 
+        public bool IsActive => _mover.IsMoving;
+        
         public void Start()
         {
             var input = L.Resolve<MoveInput>();

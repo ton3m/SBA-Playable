@@ -10,47 +10,68 @@ namespace _Project.Code.Selling
     {
         [SerializeField] private Item _moneyPrefab;
         [SerializeField] private Line.Line _lineMb;
-        
+
         private ILine _line;
 
         [SerializeField] private ItemInventory _productInventory;
         [SerializeField] private ItemInventory _moneyInventory;
 
         private Customer _currentCustomer;
-        
+
+        private bool _isServing;
+
         private void Awake() => _line = _lineMb;
 
         private void Update()
         {
-            if (_currentCustomer != null) return;
+            if (_currentCustomer == null)
+            {
+                if (_line.TryGetCustomer(out var customer) && customer.enabled)
+                {
+                    _currentCustomer = customer;
+                }
+                else
+                {
+                    return;
+                }
+            }
 
-            if (!_line.TryGetCustomer(out var customer) || !customer.enabled) return;
+            if (_currentCustomer.OrderSize < 1 || _productInventory.CanGet() == false) return;
 
-            if (customer.OrderSize > _productInventory.Count) return;
-
-            _currentCustomer = customer;
-
-            Serve();
+            if (!_isServing) Serve();
         }
 
         private void Serve()
         {
+            _isServing = true;
+            Debug.Log("Serving");
             var sequence = DOTween.Sequence();
 
-            sequence.AppendInterval(0.5f);
+            sequence.AppendInterval(0.1f);
+
+            var item = _productInventory.Get();
+
+            var duration = 0.1f;
             
-            for (int i = 0; i < _currentCustomer.OrderSize; i++)
-            {
-                var item = _productInventory.Get();
+            var move = item.transform
+                .DOMove(_currentCustomer.transform.position + Vector3.up, duration)
+                .OnComplete(() =>
+                {
+                    Destroy(item.gameObject);
+                    _currentCustomer.OrderSize--;
+                    _currentCustomer.UpdateView();
 
-                var tween = item.transform
-                    .DOMove(_currentCustomer.transform.position, 0.5f)
-                    .OnComplete(() => Destroy(item.gameObject));
+                    if (_currentCustomer.OrderSize <= 0)
+                        GetPaid();
+                    
+                    _isServing = false;
+                });
+            
+            var scale = item.transform.DOScale(Vector3.zero, duration).SetEase(Ease.InQuint);
 
-                sequence.Join(tween);
-            }
+            sequence.Join(scale).Join(move);
 
-            sequence.OnComplete(GetPaid).Play();
+            sequence.Play();
         }
 
         private void GetPaid()
@@ -62,9 +83,9 @@ namespace _Project.Code.Selling
             for (int i = 0; i < count; i++)
             {
                 var money = Instantiate(_moneyPrefab);
-                
+
                 money.enabled = false;
-                
+
                 money.transform.position = _currentCustomer.transform.position;
 
                 var tween = money.transform
@@ -81,7 +102,7 @@ namespace _Project.Code.Selling
         {
             var customer = _currentCustomer;
             _currentCustomer = null;
-            
+
             _line.OnCustomerServed(customer);
         }
     }

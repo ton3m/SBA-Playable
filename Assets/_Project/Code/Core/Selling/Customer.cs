@@ -12,7 +12,7 @@ namespace _Project.Code.Selling
         
         private Animator _animator;
         
-        public int OrderSize {get; private set;}
+        public int OrderSize {get; set;}
         public int Money {get; private set;}
 
         private void Awake() => 
@@ -24,9 +24,11 @@ namespace _Project.Code.Selling
             Money = money;
             
             _animator.runtimeAnimatorController = animatorController;
-            _bubbleView.SetText(orderSize.ToString());
+            UpdateView();
         }
         
+        public void UpdateView() => _bubbleView.SetText(OrderSize.ToString());
+
         private void OnEnable()
         {
             transform.localScale = Vector3.zero;

@@ -30,7 +30,7 @@ namespace _Project.Code.Core.Items.Transfering
             item.transform.parent = null;
             item.enabled = false;
 
-            item.transform.DOMove(to.transform.position, 0.2f).Play().OnComplete(() =>
+            item.transform.DOMove(to.transform.position, GameConfig.ItemTransferDuration).Play().OnComplete(() =>
             {
                 to.Add(item);
                 _reservations[to] -= 1;

@@ -130,9 +130,10 @@
             ]
         },
         "scenes": [
-            "Assets/_Project/_Scenes/Gameplay.unity"
+            "Assets/_Project/_Scenes/Gameplay 3.unity"
         ],
         "disabledScenes": [
+            "Assets/_Project/_Scenes/Gameplay.unity",
             "Assets/_Project/_Scenes/GameplayLegacy.unity",
             "Assets/_Project/_Scenes/Test.unity"
         ],
@@ -12510,7 +12511,7 @@
                     },
                     {
                         "name": "Clear",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Enqueue",
@@ -12530,7 +12531,7 @@
                     },
                     {
                         "name": "Dequeue",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Peek",
@@ -12546,7 +12547,7 @@
                     },
                     {
                         "name": "ToArray",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetCapacity",
@@ -15964,7 +15965,7 @@
                     },
                     {
                         "name": "timeScale#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "smoothDeltaTime#get",
@@ -16788,7 +16789,7 @@
                     },
                     {
                         "name": "localPosition#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "localPosition#set",
@@ -19172,7 +19173,7 @@
                     },
                     {
                         "name": "fillAmount#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fillAmount#set",
@@ -20826,7 +20827,7 @@
                     },
                     {
                         "name": "CalculateEffectiveState",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CheckForTransitionsToSchedule",
@@ -24858,7 +24859,7 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDestroy",
@@ -30060,7 +30061,7 @@
                     },
                     {
                         "name": "ForceInit",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Goto",
@@ -30714,7 +30715,7 @@
                     },
                     {
                         "name": "DOLocalMove",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DOLocalMoveX",
@@ -31278,7 +31279,7 @@
                     },
                     {
                         "name": "AppendInterval",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "PrependInterval",
@@ -31611,6 +31612,10 @@
                     {
                         "name": "EndGame",
                         "excluded": false
+                    },
+                    {
+                        "name": "PlayerInactiveCheck",
+                        "excluded": false
                     }
                 ]
             },
@@ -31657,6 +31662,10 @@
                     {
                         "name": "Update",
                         "excluded": false
+                    },
+                    {
+                        "name": "IsActive#get",
+                        "excluded": false
                     }
                 ]
             },
@@ -31678,6 +31687,10 @@
                     },
                     {
                         "name": "FixedUpdate",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IsMoving#get",
                         "excluded": false
                     }
                 ]
@@ -31962,11 +31975,11 @@
                     },
                     {
                         "name": "ProduceCorn",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "AnimateCircle",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -31976,15 +31989,15 @@
                 "instanceMethods": [
                     {
                         "name": "Awake",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Update",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnEnable",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDisable",
@@ -31992,7 +32005,7 @@
                     },
                     {
                         "name": "Working",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -32032,7 +32045,11 @@
                     },
                     {
                         "name": "OnDisable",
-                        "excluded": true
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateView",
+                        "excluded": false
                     }
                 ]
             },
@@ -32050,15 +32067,15 @@
                     },
                     {
                         "name": "Serve",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GetPaid",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnServed",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -32530,7 +32547,7 @@
                     },
                     {
                         "name": "OnCustomerServed",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RequestCreation$1",
@@ -32538,7 +32555,7 @@
                     },
                     {
                         "name": "RequestCreation",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CreatingCustomers",
@@ -32546,7 +32563,7 @@
                     },
                     {
                         "name": "MoveCustomers",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -32648,11 +32665,11 @@
                     },
                     {
                         "name": "FromAlpha#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ToAlpha#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Complete#get",
@@ -32672,7 +32689,7 @@
                     },
                     {
                         "name": "AddTime",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "IsName",
@@ -33160,7 +33177,7 @@
                     },
                     {
                         "name": "IsAnyCallbackSet",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DoPrepend",
@@ -33172,7 +33189,7 @@
                     },
                     {
                         "name": "DoAppendInterval",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DoPrependInterval",
@@ -33483,6 +33500,28 @@
                     {
                         "name": "GetContacts",
                         "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "_Project.Code.GameConfig",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "PlayerInactiveLoseTime#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ItemTransferDuration#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Awake",
+                        "excluded": false
                     }
                 ]
             }

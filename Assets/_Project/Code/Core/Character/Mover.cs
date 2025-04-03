@@ -13,6 +13,8 @@ namespace _Project.Code.Core.Character
 
         private IMoveInput _input;
 
+        public bool IsMoving => _input.Direction.magnitude > 0.1f;
+
         public Vector2 Direction => _input.Direction;
 
         public void Init(IMoveInput input)
